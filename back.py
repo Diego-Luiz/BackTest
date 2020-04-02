@@ -25,14 +25,16 @@ class Test(bt.Strategy):
         print('%s %s' % (dt.isoformat(), txt))
     
     def next(self):
+        print('no next')
         self.log('Close, %.2f' % self.data.close[0])
         if self.order:
             return 
     
         if not self.position:
+            print('not self.position')
             # Not yet ... we MIGHT BUY if ...
             if self.data.close[0] > self.sma[0]:
-
+                print('here')
                 # BUY, BUY, BUY!!! (with all possible default parameters)
                 self.log('BUY CREATE, %.2f' % self.data.close[0])
 
@@ -40,6 +42,7 @@ class Test(bt.Strategy):
                 self.order = self.buy()       
 
         else:
+            print('else')
             if self.data.close[0] < self.sma[0]:
                 # SELL, SELL, SELL!!! (with all possible default parameters)
                 self.log('SELL CREATE, %.2f' % self.dataclose[0])
@@ -76,20 +79,25 @@ if __name__ == "__main__":
     cerebro = bt.Cerebro()
 
     datapath = 'MSFT.csv'
-    data = bt.feeds.GenericCSVData(
-        dataname = datapath,
-        fromdate = datetime.datetime(2019,8,21),
-        todate = datetime.datetime(2020,3,23),
+    # data = bt.feeds.GenericCSVData(
+    #     dataname = datapath,
+    #     fromdate = datetime.datetime(2019,10,21),
+    #     todate = datetime.datetime(2020,3,23),
         
-        dtformat = ('%Y-%m-%d'),
-        nullvalue = 0.0,
-        datetime = 0,
-        open = 1,
-        high = 2,
-        low = 3,
-        close = 4,
-        volume = 6,
-        openinterest = -1
+    #     dtformat = ('%Y-%m-%d'),
+    #     nullvalue = 0.0,
+    #     datetime = 0,
+    #     open = 1,
+    #     high = 2,
+    #     low = 3,
+    #     close = 4,
+    #     volume = 6,
+    #     openinterest = -1
+    # )
+
+    data = bt.feeds.YahooFinanceCSVData(
+        dataname= 'MSFT.csv',
+        fromdate=datetime.datetime(2019, 10, 21)
     )
     
     cerebro.adddata(data)
