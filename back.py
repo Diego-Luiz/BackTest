@@ -27,7 +27,7 @@ class TestStrategy(bt.Strategy):
         self.buycomm = None
 
         # Add a MovingAverageSimple indicator
-        self.sma = bt.indicators.SimpleMovingAverage(
+        self.sma = bt.indicators.SMA(
             self.datas[0], period=self.params.maperiod)
 
     def notify_order(self, order):
