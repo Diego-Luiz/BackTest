@@ -8,6 +8,7 @@ from RSIStrategy import RSIStrategyy
 
 if __name__ == "__main__":
     cerebro = bt.Cerebro()
+    
     data = bt.feeds.GenericCSVData(
         dataname = './/Datas//oracle.csv',
         fromdate = datetime.datetime(1995, 1, 3),
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     )
 
     cerebro.adddata(data)
-    cerebro.broker.set_cash(100000.0)
+    cerebro.broker.set_cash(5000.0)
     cerebro.addstrategy(RSIStrategyy)
 
     print('Initial value: %.2f' % cerebro.broker.get_value())
