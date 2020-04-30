@@ -4,7 +4,7 @@ import os.path
 import sys
 
 import backtrader as bt
-from RSIStrategy import RSIStrategyy
+from Strategies.RSI.RSIStrategy import RSIStrategy
 
 if __name__ == "__main__":
     cerebro = bt.Cerebro()
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     cerebro.adddata(data)
     cerebro.broker.set_cash(5000.0)
-    cerebro.addstrategy(RSIStrategyy)
+    cerebro.addstrategy(RSIStrategy)
 
     print('Initial value: %.2f' % cerebro.broker.get_value())
     cerebro.run()

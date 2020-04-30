@@ -6,7 +6,9 @@ import backtrader as bt
 
 class RSIStrategy(bt.Strategy):
     params = (
-        ('period', 14)
+        ('period', 14),
+        ('upperband', 70),
+        ('lowerband', 30)
     )
 
     def __init__(self):
@@ -23,15 +25,15 @@ class RSIStrategy(bt.Strategy):
     def next(self):
         if self.order:
             return
-        else:
-            print('uwu')
-            # print('self.position: {}'.format(self.position))
-            # if self.rsi[0] >=71.0 and self.rsi[0]<=74.0:
-            #     # self.order = self.sell(size=20)
-            #     self.order = self.sell()
-            # elif self.rsi[0] <= 30.0:
-            #     # self.order = self.buy(size=1000)
-            #     self.order = self.buy()
+       
+        else:   
+            print('self.position: {}'.format(self.position))
+            if self.rsi[0] >=71.0 and self.rsi[0]<=74.0:
+                # self.order = self.sell(size=20)
+                self.order = self.sell()
+            elif self.rsi[0] <= 30.0:
+                # self.order = self.buy(size=1000)
+                self.order = self.buy()
 
     def notify_order(self,order):
         if order.status in [order.Submitted, order.Accepted]:

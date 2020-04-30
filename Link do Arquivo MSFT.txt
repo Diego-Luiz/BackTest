@@ -1,1 +1,0 @@
-https://finance.yahoo.com/quote/MSFT/history?period1=1571961600&period2=1585094400&interval=1wk&filter=history&frequency=1wk
