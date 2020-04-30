@@ -1,6 +1,7 @@
 import datetime
 import os.path
 import sys
+import math
 import backtrader as bt
 
 
@@ -17,23 +18,25 @@ class RSIStrategy(bt.Strategy):
         self.order = None
         self.rsi = bt.indicators.RelativeStrengthIndex(
             self.dataclose, 
-            period=self.params.period
+            period=self.params.period,
+            upperband= self.params.upperband,
+            lowerband = self.params.lowerband
         )
-        print('Hello world')
-
-
+        
     def next(self):
         if self.order:
             return
-       
+        
         else:   
-            print('self.position: {}'.format(self.position))
-            if self.rsi[0] >=71.0 and self.rsi[0]<=74.0:
-                # self.order = self.sell(size=20)
-                self.order = self.sell()
-            elif self.rsi[0] <= 30.0:
-                # self.order = self.buy(size=1000)
-                self.order = self.buy()
+            if self.position.size == 0: #se a quantidade de ações for 0
+                if self.rsi[0] < self.params.lowerband: # e o RSI for menor que 30, entao compra
+                    amount_to_invest = (0.50 * self.broker.cash) #vai investir 50% do dinheiro q tem no broker
+                    self.size = math.floor(amount_to_invest/self.dataclose[0]) #quantidade de ações que vao ser compradas de acordo com o dinheiro e o preço de fechamento 
+                    self.order = self.buy(size=self.size) 
+
+            if self.position.size > 0: #se a quantidade de ações for MAIOR que 0
+                if self.rsi[0] > self.params.upperband: # e o RSI for maior que 70, entao vende
+                    self.order = self.sell(size=self.position.size)
 
     def notify_order(self,order):
         if order.status in [order.Submitted, order.Accepted]:
@@ -58,4 +61,4 @@ class RSIStrategy(bt.Strategy):
             print('Order Canceled/Margin/Rejected')
 
         self.order = None
-        print('Self.order = {}'.format(self.order))
+        
