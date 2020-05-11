@@ -5,6 +5,7 @@ import sys
 
 import backtrader as bt
 from Strategies.RSI.RSIStrategy import RSIStrategy
+from Strategies.MACD.MACD import MACDStrategy
 
 if __name__ == "__main__":
     cerebro = bt.Cerebro()
@@ -30,7 +31,7 @@ if __name__ == "__main__":
 
     cerebro.adddata(data)
     cerebro.broker.set_cash(5000.0)
-    cerebro.addstrategy(RSIStrategy)
+    cerebro.addstrategy(MACDStrategy)
 
     print('Initial value: %.2f' % cerebro.broker.get_value())
     cerebro.run()
