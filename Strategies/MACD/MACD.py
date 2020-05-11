@@ -21,12 +21,18 @@ class MACDStrategy(bt.Strategy):
             period_me2 = self.params.period_me2, 
             period_me1 = self.params.period_me1, 
             period_signal = self.params.period_signal
-        )  
+        )
+        #Esse indicardo CrossOver vai verficar quando o macd cruzou com o signal. Ai dependendo se cruzou indo pra baixo ou indo pra cima
+        self.macdsig = bt.ind.CrossOver(self.macd.macd, self.macd.signal)
     
     def next(self):
         if self.order:
             return
         # print('Next, self.signal?: {}'.format(self.signal[0]))
+        if (self.smasig[0] > 0 ):
+            print('BUY ?')
+        else:
+            print('SELL ?')
        
 
     def notify_order(self,order):
