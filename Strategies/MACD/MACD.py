@@ -31,8 +31,10 @@ class MACDStrategy(bt.Strategy):
         # print('Next, self.signal?: {}'.format(self.signal[0]))
         if (self.macdsig[0] > 0 ):
             print('BUY ?')
+            self.order = self.buy()
         else:
             print('SELL ?')
+            self.order = self.sell()
        
 
     def notify_order(self,order):
