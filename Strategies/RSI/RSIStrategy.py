@@ -62,3 +62,4 @@ class RSIStrategy(bt.Strategy):
 
         self.order = None
         
+    

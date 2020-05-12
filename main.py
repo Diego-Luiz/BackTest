@@ -37,3 +37,4 @@ if __name__ == "__main__":
     cerebro.run()
     print('Final value: %.2f' % cerebro.broker.get_value())
     cerebro.plot()
+    
