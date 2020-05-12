@@ -27,7 +27,7 @@ if __name__ == "__main__":
         openinterest=-1
     )
 
-    #data = bt.feeds.YahooFinanceCSVData(dataname=".//Datas//MSFT.csv")
+    # data = bt.feeds.YahooFinanceCSVData(dataname=".//Datas//MSFT.csv")
 
     cerebro.adddata(data)
     cerebro.broker.set_cash(5000.0)
