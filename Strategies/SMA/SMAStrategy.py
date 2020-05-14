@@ -7,19 +7,37 @@ import backtrader as bt
 
 class SMAStrategy(bt.Strategy):
     params=(
-        ('period',30),
+        ('period1',20),
+        ('period2',50)
     )
 
     def __init__(self):
         # Keep a reference to the "close" line in the data[0] dataseries
         self.dataclose = self.datas[0].close
         self.order = None
-        self.sma = bt.indicators.MovingAverageSimple(
+        self.smacurta = bt.indicators.MovingAverageSimple(
             self.dataclose,
-            period=self.params.period
+            period=self.params.period1,
+            plotname= 'SMA curta'
         )
+        self.smalonga = bt.indicators.MovingAverageSimple(
+            self.dataclose,
+            period=self.params.period2,
+            plotname = 'SMA longa'
+            
+        )
+        self.crossMedias = bt.indicators.CrossOver(self.smacurta, self.smalonga)
+    
+    def next(self):
+        if self.order:
+            return
         
-   
+        if self.position.size > 0 and self.crossMedias[0] == -1.0: #se tem ações e se da para comprar
+            self.order = self.sell()
+        elif self.crossMedias[0] == 1.0: #se der para comprar
+            self.order = self.buy()
+            
+
     def notify_order(self,order):
         if order.status in [order.Submitted, order.Accepted]:
             return
