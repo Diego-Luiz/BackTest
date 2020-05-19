@@ -7,8 +7,8 @@ import backtrader as bt
 
 class SMAStrategy(bt.Strategy):
     params=(
-        ('period1',20),
-        ('period2',50)
+        ('period1',50), #media curta
+        ('period2',200)  #media longa
     )
 
     def __init__(self):

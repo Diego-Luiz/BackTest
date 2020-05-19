@@ -6,8 +6,8 @@ import backtrader as bt
 
 class MACDStrategy(bt.Strategy):
     params = (
-        ('period_me1',12),
-        ('period_me2',26),
+        ('period_me1',50),
+        ('period_me2',200),
         ('period_signal',9)
     )
     

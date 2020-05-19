@@ -12,28 +12,31 @@ from Strategies.SMA.SMAStrategy import SMAStrategy
 if __name__ == "__main__":
     cerebro = bt.Cerebro()
     
-    data = bt.feeds.GenericCSVData(
-        dataname = './/Datas//oracle.csv',
-        fromdate = datetime.datetime(1995, 1, 3),
-        todate = datetime.datetime(2014, 12, 31),
-        nullvalue=0.0,
+    # data = bt.feeds.GenericCSVData(
+    #     dataname = './/Datas//oracle.csv',
+    #     fromdate = datetime.datetime(1995, 1, 3),
+    #     todate = datetime.datetime(2014, 12, 31),
+    #     nullvalue=0.0,
 
-        dtformat=('%Y-%m-%d'),
+    #     dtformat=('%Y-%m-%d'),
 
-        datetime = 0,
-        high = 2,
-        low = 3,
-        open = 1,
-        close = 4,
-        volume = 6,
-        openinterest=-1
-    )
+    #     datetime = 0,
+    #     high = 2,
+    #     low = 3,
+    #     open = 1,
+    #     close = 4,
+    #     volume = 6,
+    #     openinterest=-1
+    # )
 
     # data = bt.feeds.YahooFinanceCSVData(dataname=".//Datas//MSFT.csv")
 
+    data = bt.feeds.YahooFinanceCSVData(dataname = ".//Datas//Via Varejo S.A//Frequencia5anosdaily//VVAR3.SA.csv")
+    
+
     cerebro.adddata(data)
     cerebro.broker.set_cash(5000.0)
-    cerebro.addstrategy(SMAStrategy)
+    cerebro.addstrategy(RSIStrategy)
 
     print('Initial value: %.2f' % cerebro.broker.get_value())
     cerebro.run()
