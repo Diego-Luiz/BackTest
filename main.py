@@ -31,15 +31,37 @@ if __name__ == "__main__":
 
     # data = bt.feeds.YahooFinanceCSVData(dataname=".//Datas//MSFT.csv")
 
-    data = bt.feeds.YahooFinanceCSVData(dataname = ".//Datas//Via Varejo S.A//Frequencia5anosdaily//VVAR3.SA.csv")
+    data = bt.feeds.YahooFinanceCSVData(dataname = ".//Datas//Lojas Renner//Frequencia5anosdaily//LREN3.SA.csv")
     
 
     cerebro.adddata(data)
+    
+    #RSI
     cerebro.broker.set_cash(5000.0)
     cerebro.addstrategy(RSIStrategy)
-
     print('Initial value: %.2f' % cerebro.broker.get_value())
-    cerebro.run()
+    retorno = cerebro.run()
     print('Final value: %.2f' % cerebro.broker.get_value())
-    cerebro.plot()
+
+    #MACD
+    cerebro.broker.set_cash(5000.0)
+    cerebro.addstrategy(MACDStrategy)
+    print('Initial value: %.2f' % cerebro.broker.get_value())
+    retorno = cerebro.run()
+    print('Final value: %.2f' % cerebro.broker.get_value())
+
+    #SMA
+    cerebro.broker.set_cash(5000.0)
+    cerebro.addstrategy(SMAStrategy)
+    print('Initial value: %.2f' % cerebro.broker.get_value())
+    retorno = cerebro.run()
+    print('Final value: %.2f' % cerebro.broker.get_value())
+    
+   
+    print('RSI: {}, MACD: {}, SMA: {}'.format(
+        retorno[0].rsi[0],
+        retorno[1].crossMacdSignal[0],
+        retorno[2].crossMedias[0])
+    )
+    cerebro.plot(style='candlesticks')
     
