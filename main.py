@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # )
 
     # data = bt.feeds.YahooFinanceCSVData(dataname=".//Datas//MSFT.csv")
-
+    nomeEmpresa = "Lojas Renner"
     data = bt.feeds.YahooFinanceCSVData(dataname = ".//Datas//Lojas Renner//Frequencia5anosdaily//LREN3.SA.csv")
     
 
@@ -57,11 +57,35 @@ if __name__ == "__main__":
     retorno = cerebro.run()
     print('Final value: %.2f' % cerebro.broker.get_value())
     
-   
-    print('RSI: {}, MACD: {}, SMA: {}'.format(
-        retorno[0].rsi[0],
-        retorno[1].crossMacdSignal[0],
-        retorno[2].crossMedias[0])
-    )
+    arquivo = open('Resultados.txt','w')
+
+    legenda = "     Legenda\nC: Compra       V: Venda\nURSI: Ultima operacao RSI   ARSI atual: RSI atual\nUMACD: Ultima operacao MACD  AMACD: MACD atual\nUSMA: Ultima operacao SMA    ASMA: SMA atual\n"
+    print(legenda)
+    arquivo.writelines(legenda)
+
+    dictionary = { 'URSI':retorno[0].lastRSI, 'ARSI':round(retorno[0].rsi[0],2),
+                   'UMACD':retorno[1].lastMACD, 'AMACD': retorno[1].crossMacdSignal[0],
+                   'USMA':retorno[2].lastSMA, 'ASMA':retorno[2].crossMedias[0]
+                 }
+    
+    stringtowrite1 = []
+    stringtowrite2 = []
+    
+    for i in dictionary:
+        stringtowrite1.append('|{}|'.format(i)+" ")
+        stringtowrite2.append(str(dictionary[i]) +"      ")
+
+    stringtowrite1.append('\n')
+    stringtowrite2.append('\n')
+    
+    for i in stringtowrite1:
+        print(i,end="")
+    for i in stringtowrite2:
+        print(i,end="")
+    
+    arquivo.write("\n\n     Resultados\nEmpresa: {}\n".format(nomeEmpresa))     
+    arquivo.writelines(stringtowrite1)   
+    arquivo.writelines(stringtowrite2)
+    
     cerebro.plot(style='candlesticks')
     

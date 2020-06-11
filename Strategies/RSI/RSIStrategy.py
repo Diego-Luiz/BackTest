@@ -16,6 +16,7 @@ class RSIStrategy(bt.Strategy):
         # Keep a reference to the "close" line in the data[0] dataseries
         self.dataclose = self.datas[0].close
         self.order = None
+        self.lastRSI = None
         self.rsi = bt.indicators.RelativeStrengthIndex(
             self.dataclose, 
             period=self.params.period,
@@ -33,11 +34,11 @@ class RSIStrategy(bt.Strategy):
                     amount_to_invest = (0.50 * self.broker.cash) #vai investir 50% do dinheiro q tem no broker
                     self.size = math.floor(amount_to_invest/self.dataclose[0]) #quantidade de ações que vao ser compradas de acordo com o dinheiro e o preço de fechamento 
                     self.order = self.buy(size=self.size) 
-
+                    self.lastRSI = 'C'
             if self.position.size > 0: #se a quantidade de ações for MAIOR que 0
                 if self.rsi[0] > self.params.upperband: # e o RSI for maior que 70, entao vende
                     self.order = self.sell(size=self.position.size)
-
+                    self.lastRSI = 'V'
     def notify_order(self,order):
         if order.status in [order.Submitted, order.Accepted]:
             return

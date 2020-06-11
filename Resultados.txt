@@ -1,0 +1,11 @@
+     Legenda
+C: Compra       V: Venda
+URSI: Ultima operacao RSI   ARSI atual: RSI atual
+UMACD: Ultima operacao MACD  AMACD: MACD atual
+USMA: Ultima operacao SMA    ASMA: SMA atual
+
+
+     Resultados
+Empresa: Lojas Renner
+|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA| 
+V      50.35      C      0.0      V      0.0      
