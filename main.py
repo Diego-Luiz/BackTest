@@ -59,7 +59,7 @@ if __name__ == "__main__":
     
     arquivo = open('Resultados.txt','w')
 
-    legenda = "     Legenda\nC: Compra       V: Venda\nURSI: Ultima operacao RSI   ARSI atual: RSI atual\nUMACD: Ultima operacao MACD  AMACD: MACD atual\nUSMA: Ultima operacao SMA    ASMA: SMA atual\n"
+    legenda = "     Legenda\nC: Compra       V: Venda\nURSI: Ultima operacao RSI   ARSI atual: RSI atual\nUMACD: Ultima operacao MACD  AMACD: MACD atual\nUSMA: Ultima operacao SMA    ASMA: SMA atual\nS: Sugestão\n"
     print(legenda)
     arquivo.writelines(legenda)
 
@@ -67,6 +67,29 @@ if __name__ == "__main__":
                    'UMACD':retorno[1].lastMACD, 'AMACD': retorno[1].crossMacdSignal[0],
                    'USMA':retorno[2].lastSMA, 'ASMA':retorno[2].crossMedias[0]
                  }
+    decision_dictt = {'V':0, 'C':0}
+
+    # Preenchendo os valores dos indices do dicionário de decisao (compra ou venda), de acordo com os valores retornados pelas estratégias 
+    decision_dictt[dictionary['URSI']] += 1
+    decision_dictt[dictionary['UMACD']] += 1
+    decision_dictt[dictionary['USMA']] += 1
+
+    if dictionary['ARSI'] >= 70.0:
+        decision_dictt['V'] += 1
+    elif dictionary['ARSI'] <= 30.0:
+        decision_dictt['C'] += 1
+    
+    if dictionary['AMACD'] == 1.0:
+        decision_dictt['V'] += 1
+    elif dictionary['AMACD'] == -1.0:
+        decision_dictt['C'] += 1
+
+    if dictionary['ASMA'] == -1.0:
+        decision_dictt['V'] += 1
+    elif dictionary['ASMA'] == 1.0:
+        decision_dictt['C'] += 1
+
+    decision_dictt_true = sorted(decision_dictt) #ordenando de forma q a chave('V' ou 'C') com maior resultado fique na ultima posicao 
     
     stringtowrite1 = []
     stringtowrite2 = []
@@ -74,6 +97,9 @@ if __name__ == "__main__":
     for i in dictionary:
         stringtowrite1.append('|{}|'.format(i)+" ")
         stringtowrite2.append(str(dictionary[i]) +"      ")
+
+    stringtowrite1.append('     |{}|'.format('S')+" ")
+    stringtowrite2.append((decision_dictt_true[len(decision_dictt_true)-1]) +"      ")
 
     stringtowrite1.append('\n')
     stringtowrite2.append('\n')
