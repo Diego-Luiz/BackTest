@@ -57,7 +57,7 @@ if __name__ == "__main__":
     retorno = cerebro.run()
     print('Final value: %.2f' % cerebro.broker.get_value())
     
-    arquivo = open('Resultados.txt','w')
+    arquivo = open('Resultados.txt','a+')
 
     legenda = "     Legenda\nC: Compra       V: Venda\nURSI: Ultima operacao RSI   ARSI atual: RSI atual\nUMACD: Ultima operacao MACD  AMACD: MACD atual\nUSMA: Ultima operacao SMA    ASMA: SMA atual\nS: Sugestão\n"
     print(legenda)
@@ -112,6 +112,6 @@ if __name__ == "__main__":
     arquivo.write("\n\n     Resultados\nEmpresa: {}\n".format(nomeEmpresa))     
     arquivo.writelines(stringtowrite1)   
     arquivo.writelines(stringtowrite2)
-    
+    arquivo.write("\n\n")
     cerebro.plot(style='candlesticks')
     

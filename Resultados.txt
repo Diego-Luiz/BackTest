@@ -7,6 +7,16 @@ S: Sugestão
 
 
      Resultados
+Empresa: Magazine Luiza S.A
+|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
+V      64.07      V      0.0      C      0.0      V      
+
+Empresa: Marisa
+|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
+V      46.55      C      0.0      V      0.0      V      
+
 Empresa: Lojas Renner
 |URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
 V      50.35      C      0.0      V      0.0      V      
+
+
