@@ -1,6 +1,9 @@
-# BackTest é um repositório com o intuito de realizar uma simulação de compra e venda na bolsa de valores de determinada empresa. 
+# BackTest é um repositório com o intuito de realizar backtesting em relação as transações financeiras de uma determinada empresa. 
 Para isso o arquivo "main.py" utiliza os dados baixados no formato .CSV provindos do website financeiro: https://finance.yahoo.com/, onde a partir desses dados são
-aplicadas estratégias, onde cada estratégia está relacionado a um indicador conhecido e utilizado no mercado financeiro.
+aplicadas estratégias, onde cada estratégia está relacionada a um indicador conhecido e utilizado no mercado financeiro.
+
+# O que é Backtesting/Backtest:
+https://maisretorno.com/blog/termos/b/backtest
 
 # Biblioteca em python utilizada
 Backtrader: https://www.backtrader.com/ 
