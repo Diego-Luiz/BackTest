@@ -1,1 +1,0 @@
-SMA nao foi possivel realizar pois não tem 200 candles (necessário para a média longa)

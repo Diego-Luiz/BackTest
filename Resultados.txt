@@ -1,22 +1,21 @@
-     Legenda
-C: Compra       V: Venda
-URSI: Ultima operacao RSI   ARSI atual: RSI atual
-UMACD: Ultima operacao MACD  AMACD: MACD atual
-USMA: Ultima operacao SMA    ASMA: SMA atual
-S: Sugestão
 
 
-     Resultados
-Empresa: Magazine Luiza S.A
-|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
-V      64.07      V      0.0      C      0.0      V      
 
-Empresa: Marisa
-|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
-V      46.55      C      0.0      V      0.0      V      
 
 Empresa: Lojas Renner
 |URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
 V      50.35      C      0.0      V      0.0      V      
+
+
+
+Empresa: Magazine Luiza S.A
+|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
+V      64.07      V      0.0      C      0.0      V      
+
+
+
+Empresa: Marisa
+|URSI| |ARSI| |UMACD| |AMACD| |USMA| |ASMA|      |S| 
+V      46.55      C      0.0      V      0.0      V      
 
 
