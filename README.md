@@ -6,8 +6,11 @@ aplicadas estratégias, onde cada estratégia está relacionado a um indicador c
 Backtrader: https://www.backtrader.com/ 
 
 # Indicadores utilizados
+
 MACD: Moving Average Convergence Divergence
+
 SMA: Simple Moving Average
+
 RSI: Relative Strength Index
 
 # Informações a respeito do funcionamento do programa (main.py)
